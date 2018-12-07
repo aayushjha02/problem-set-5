@@ -1,7 +1,9 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  * This class has only one responsibility: start the ATM program!
  */
-
 public class Tester {
 	
 	/**
@@ -12,10 +14,18 @@ public class Tester {
 	
 	public static void main(String[] args) {
 		
-		/*
-		 * Rather than hard coding one or more BankAccount objects, you'll need to read them in
-		 * from our very primitive database (i.e., a flat-file). After making changes, of course,
-		 * you'll need to update the database accordingly.
-		 */
+		Database db = new Database();
+		try {
+			db.makeDatabase();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ATM atm1 = new ATM(db);
+		atm1.showMenu();
+		
 	}
 }
